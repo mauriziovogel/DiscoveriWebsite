@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kontaktieren Sie DISCOVERI über unser einfaches Kontaktformular. Entdecken Sie innovative Projekte und kreative Lösungen.">
+    <meta name="keywords" content="Discoveri, Kontakt, Projekte, kreative Lösungen, Support">
+    <meta name="author" content="Discoveri">
+    <title>DISCOVER MORE</title>
+    <link rel="canonical" href="https://discoveri.de/">
+    <link rel="icon" href="Assets/style/favicon.png" type="image/png">
+    <style>
+        @font-face {
+            font-family: 'Montserrat-Alt1';
+            src: url('Montserrat-Alt1-Regular.woff2') format('woff2'),
+                 url('Montserrat-Alt1-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat-Alt1';
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: white;
+            color: #333;
+        }
+
+        .hero {
+            height: 100vh;
+            background: url('assets/style/backround.png') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0 50px;
+        }
+
+        .hero-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            margin-left: auto;
+        }
+
+        .hamburger-menu .bar {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e48eab;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .logo {
+                height: 30px; /* Reduzierte Größe für mobile Ansicht */
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 10px;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                color: white;
+                font-size: 1em;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-content h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin: 30px 0;
+        }
+
+        .hero-content a {
+            padding: 15px 30px;
+            background: #e48eab;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .hero-content a:hover {
+            transform: scale(1.1);
+            background: #d36a92;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #e48eab;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-header">
+            <a href="/">
+                <img src="assets/style/logo-white.png" alt="Discoveri Logo" class="logo" loading="lazy">
+            </a>
+            <!-- Hamburger Menu -->
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- Navigation -->
+            <nav class="nav-links">
+                <a href="about.html">ÜBER</a>
+                <a href="contact.html">KONTAKT</a>
+                <a href="shop.html">SHOP</a>
+                <a href="login.html">LOGIN</a>
+            </nav>
+        </div>
+        <div class="hero-content">
+            <h1>Willkommen bei DISCOVERI</h1>
+            <p>Jedes Projekt ist eine Chance, Großes zu schaffen.</p>
+            <a href="about.html">DISCOVER MORE</a>
+        </div>
+        <div class="footer-links">
+            <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="impressum.html">IMPRESSUM</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburgerMenu.addEventListener('click', () => {
+                const isVisible = navLinks.style.display === 'flex';
+                navLinks.style.display = isVisible ? 'none' : 'flex';
+            });
+
+            navLinks.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    navLinks.style.display = 'none'; // Schließe das Menü nach einem Klick
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="icon" href="favicon.png" type="image/png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum - Maurizio Vogel | DISCOVERI</title>
+    <style>
+        @font-face {
+            font-family: 'Montserrat-Alt1';
+            src: url('fonts/Montserrat-Alt1-Regular.woff2') format('woff2'),
+                 url('fonts/Montserrat-Alt1-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat-Alt1', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: white;
+            color: #333;
+        }
+
+        .hero {
+            height: 150px;
+            background: url('assets/style/backround.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger-menu .bar {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e48eab;
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 1em;
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-links a:last-child {
+            border-bottom: none;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #333;
+        }
+
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .footer {
+            background: url('assets/style/backround.png') no-repeat center bottom/cover;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #e48eab;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <a href="/">
+            <img src="assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+        </a>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav class="nav-links">
+            <a href="about.html">ÜBER</a>
+            <a href="contact.html">KONTAKT</a>
+            <a href="shop.html">SHOP</a>
+            <a href="login.html">LOGIN</a>
+        </nav>
+        <nav class="desktop-nav">
+            <a href="about.html">ÜBER</a>
+            <a href="contact.html">KONTAKT</a>
+            <a href="shop.html">SHOP</a>
+            <a href="login.html">LOGIN</a>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h1>Impressum</h1>
+        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+        <p><strong>Maurizio Vogel</strong><br>
+           Einzelunternehmen<br>
+           Wallenburgstraße 26<br>
+           76891 Busenberg<br>
+           Deutschland<br>
+           <strong>Telefon:</strong> +49 176 57 62 70 90<br>
+           <strong>Email:</strong> maurizio.vogel@discoveri.de<br>
+           <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong> Maurizio Vogel<br>
+        </p>
+
+        <p><strong>Haftungsausschluss:</strong><br>
+        Die Inhalte dieser Webseite wurden mit größtmöglicher Sorgfalt erstellt. Dennoch übernehmen wir keine Gewähr für die Vollständigkeit, Richtigkeit und Aktualität der bereitgestellten Informationen.</p>
+
+        <p><strong>Urheberrecht:</strong><br>
+        Alle Inhalte dieser Webseite, einschließlich Texte, Bilder und Grafiken, unterliegen dem Urheberrecht. Eine Vervielfältigung, Verwendung oder Veröffentlichung der Inhalte bedarf der ausdrücklichen Zustimmung des Website-Betreibers.</p>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">STARTSEITE</a>
+            <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const desktopNav = document.querySelector('.desktop-nav');
+
+            const isMobile = window.matchMedia('(max-width: 768px)').matches;
+            if (!isMobile) {
+                navLinks.style.display = 'none';
+                desktopNav.style.display = 'flex';
+            } else {
+                desktopNav.style.display = 'none';
+            }
+
+            hamburgerMenu.addEventListener('click', () => {
+                const isVisible = navLinks.style.display === 'flex';
+                navLinks.style.display = isVisible ? 'none' : 'flex';
+            });
+
+            navLinks.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    navLinks.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

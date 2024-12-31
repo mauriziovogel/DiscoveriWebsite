@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <link rel="icon" href="assets/style/favicon.png" type="image/png">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb | DISCOVERI</title>
+    <style>
+        @font-face {
+            font-family: 'Montserrat-Alt1';
+            src: url('fonts/Montserrat-Alt1-Regular.woff2') format('woff2'),
+                 url('fonts/Montserrat-Alt1-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Montserrat-Alt1', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: white;
+            color: #333;
+        }
+
+        .hero {
+            height: 150px;
+            background: url('assets/style/backround.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #e48eab;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2.2em;
+            color: #333;
+        }
+
+        .empty-cart {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .empty-cart p {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .empty-cart a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e48eab;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .empty-cart a:hover {
+            background-color: #d36a92;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        table th {
+            background: #f4f4f4;
+        }
+
+        .remove-btn {
+            background-color: #e48eab;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .remove-btn:hover {
+            background-color: #d36a92;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .checkout-form {
+            margin-top: 20px;
+        }
+
+        .checkout-form label {
+            font-weight: bold;
+        }
+
+        .checkout-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #e48eab;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #d36a92;
+        }
+
+        .footer {
+            background: url('assets/style/backround.png') no-repeat center bottom/cover;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #e48eab;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <a href="/">
+            <img src="assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+        </a>
+        <nav>
+            <a href="shop.html">SHOP</a>
+            <a href="about.html">ÜBER</a>
+            <a href="contact.html">KONTAKT</a>
+            <a href="login.html">LOGIN</a>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h1>Warenkorb</h1>
+        <div id="cart-content">
+            <table id="cart-table">
+                <thead>
+                    <tr>
+                        <th>Produkt</th>
+                        <th>Zeitraum</th>
+                        <th>Preis</th>
+                        <th>Aktion</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    <!-- Dynamische Inhalte hier einfügen -->
+                </tbody>
+            </table>
+
+            <div class="total" id="total-cost">
+                Gesamtkosten: 0 € (inkl. Versand)
+            </div>
+
+            <div class="checkout-form" id="checkout-form">
+                <h2>Kontaktinformationen</h2>
+                <form action="checkout.html" method="POST">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">E-Mail:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="message">Nachricht (optional):</label>
+                    <input type="text" id="message" name="message">
+
+                    <button type="submit" class="checkout-btn">Anfrage senden</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="empty-cart" id="empty-cart" style="display: none;">
+            <p>Ihr Warenkorb ist leer.</p>
+            <a href="shop.html">Produkte ansehen</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">STARTSEITE</a>
+            <a href="impressum.html">IMPRESSUM</a>
+            <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </footer>
+
+    <script>
+        const cartTable = document.getElementById('cart-items');
+        const totalCostElement = document.getElementById('total-cost');
+        const cartContent = document.getElementById('cart-content');
+        const emptyCart = document.getElementById('empty-cart');
+
+        let totalPrice = 0;
+        const shippingCost = 13.98;
+
+        // Lade die vorhandenen Artikel aus dem Local Storage
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Funktion zum Datumsformat TT.MM.JJJJ konvertieren
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('de-DE');
+        }
+
+        // Funktion zum Warenkorb rendern
+        function renderCart() {
+            cartTable.innerHTML = ''; // Tabelle leeren
+            totalPrice = 0;
+
+            if (cartItems.length === 0) {
+                cartContent.style.display = 'none';
+                emptyCart.style.display = 'block';
+                return;
+            }
+
+            cartItems.forEach((item, index) => {
+                const period = `${formatDate(item.startDate)} - ${formatDate(item.endDate)}`;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${period}</td>
+                    <td>${item.price} €</td>
+                    <td><button class="remove-btn" data-index="${index}">Entfernen</button></td>
+                `;
+                cartTable.appendChild(row);
+                totalPrice += parseFloat(item.price);
+            });
+
+            totalPrice += shippingCost;
+            totalCostElement.textContent = `Gesamtkosten: ${totalPrice.toFixed(2)} € (inkl. Versand)`;
+        }
+
+        // Funktion zum Entfernen eines Artikels
+        cartTable.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-btn')) {
+                const index = event.target.dataset.index;
+                cartItems.splice(index, 1); // Artikel aus Array entfernen
+                localStorage.setItem('cart', JSON.stringify(cartItems)); // Local Storage aktualisieren
+                renderCart(); // Warenkorb neu rendern
+            }
+        });
+
+        // Warenkorb beim Laden der Seite rendern
+        renderCart();
+    </script>
+</body>
+</html>
