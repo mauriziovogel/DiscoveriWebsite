@@ -33,7 +33,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 50px;
+            padding: 0 20px;
             position: relative;
         }
 
@@ -66,6 +66,7 @@
         nav {
             display: flex;
             gap: 20px;
+            align-items: center;
         }
 
         nav a {
@@ -103,12 +104,28 @@
             border-bottom: none;
         }
 
+        .desktop-nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .desktop-nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .desktop-nav a:hover {
+            color: #e48eab;
+        }
+
         .content {
             flex: 1;
             max-width: 700px;
             margin: 0 auto;
             background-color: white;
-            padding: 40px 60px;
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -118,30 +135,30 @@
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 2em;
             color: #333;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             margin-top: 20px;
         }
 
         input[type="text"], input[type="password"] {
             padding: 15px;
-            font-size: 1.2em;
+            font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
             width: 90%;
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
         input[type="submit"] {
             padding: 15px;
-            font-size: 1.2em;
+            font-size: 1em;
             border: none;
             border-radius: 5px;
             background: #e48eab;
@@ -149,7 +166,7 @@
             cursor: pointer;
             transition: background 0.3s;
             width: 90%;
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
         }
 
@@ -165,7 +182,7 @@
 
         .footer {
             background: url('assets/style/backround.png') no-repeat center bottom/cover;
-            height: 150px;
+            height: 100px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -174,7 +191,7 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .footer-links a {
@@ -199,14 +216,26 @@
 
             .nav-links {
                 display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 70px;
-                right: 20px;
-                background: rgba(0, 0, 0, 0.9);
-                border-radius: 10px;
+            }
+
+            .desktop-nav {
+                display: none;
+            }
+
+            .logo {
+                height: 30px;
+            }
+
+            .content {
                 padding: 15px;
-                gap: 15px;
+            }
+
+            input[type="text"], input[type="password"], input[type="submit"] {
+                font-size: 0.9em;
+            }
+
+            h1 {
+                font-size: 1.5em;
             }
         }
     </style>
@@ -258,15 +287,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const navLinks = document.querySelector('.nav-links');
-            const desktopNav = document.querySelector('.desktop-nav');
-
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            if (!isMobile) {
-                navLinks.style.display = 'none';
-                desktopNav.style.display = 'flex';
-            } else {
-                desktopNav.style.display = 'none';
-            }
 
             hamburgerMenu.addEventListener('click', () => {
                 const isVisible = navLinks.style.display === 'flex';

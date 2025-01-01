@@ -115,6 +115,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
         }
 
         h1 {
@@ -184,6 +185,21 @@
             color: #e48eab;
         }
 
+        .success-message {
+            display: none;
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
@@ -221,7 +237,7 @@
 
     <div class="content">
         <h1>KONTAKT</h1>
-        <form action="https://formspree.io/f/xlddnyrw" method="POST">
+        <form id="contact-form">
             <label>
                 Name:
                 <input type="text" name="name" required>
@@ -240,6 +256,7 @@
             </label>
             <button type="submit">Senden</button>
         </form>
+        <div class="success-message">Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.</div>
     </div>
 
     <footer class="footer">
@@ -253,26 +270,34 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const navLinks = document.querySelector('.nav-links');
-            const desktopNav = document.querySelector('.desktop-nav');
+            const form = document.getElementById('contact-form');
+            const successMessage = document.querySelector('.success-message');
 
-            const isMobile = window.matchMedia('(max-width: 768px)').matches;
-            if (!isMobile) {
-                navLinks.style.display = 'none';
-                desktopNav.style.display = 'flex';
-            } else {
-                desktopNav.style.display = 'none';
-            }
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
 
-            hamburgerMenu.addEventListener('click', () => {
-                const isVisible = navLinks.style.display === 'flex';
-                navLinks.style.display = isVisible ? 'none' : 'flex';
-            });
+                const formData = new FormData(form);
 
-            navLinks.addEventListener('click', (event) => {
-                if (event.target.tagName === 'A') {
-                    navLinks.style.display = 'none';
+                try {
+                    const response = await fetch('https://formspree.io/f/xlddnyrw', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        form.reset();
+                        successMessage.style.display = 'block';
+                        setTimeout(() => {
+                            successMessage.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        alert('Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.');
+                    }
+                } catch (error) {
+                    alert('Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.');
                 }
             });
         });
