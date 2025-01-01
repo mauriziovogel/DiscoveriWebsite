@@ -30,7 +30,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 50px;
+            padding: 0 20px;
             position: relative;
         }
 
@@ -41,6 +41,23 @@
 
         .logo:hover {
             transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+        }
+
+        .hamburger-menu .bar {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
 
         nav {
@@ -58,6 +75,41 @@
 
         nav a:hover {
             color: #e48eab;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 10px;
+                padding: 15px;
+                gap: 15px;
+                z-index: 1000;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            nav a {
+                color: white;
+                font-size: 1em;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
+            }
         }
 
         .content {
@@ -192,6 +244,51 @@
         .footer-links a:hover {
             color: #e48eab;
         }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .popup h2 {
+            margin-bottom: 10px;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            background-color: #e48eab;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .popup button:hover {
+            background-color: #d36a92;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
@@ -199,6 +296,11 @@
         <a href="/">
             <img src="assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
         </a>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
         <nav>
             <a href="shop.html">SHOP</a>
             <a href="about.html">ÜBER</a>
@@ -215,7 +317,8 @@
                     <tr>
                         <th>Produkt</th>
                         <th>Zeitraum</th>
-                        <th>Preis</th>
+                        <th>Tage</th>
+                        <th>Gesamtpreis</th>
                         <th>Aktion</th>
                     </tr>
                 </thead>
@@ -230,7 +333,7 @@
 
             <div class="checkout-form" id="checkout-form">
                 <h2>Kontaktinformationen</h2>
-                <form action="checkout.html" method="POST">
+                <form id="cart-form" method="POST">
                     <label for="name">Name:</label>
                     <input type="text" id="name" name="name" required>
 
@@ -239,6 +342,8 @@
 
                     <label for="message">Nachricht (optional):</label>
                     <input type="text" id="message" name="message">
+
+                    <input type="hidden" id="cartContent" name="cartContent">
 
                     <button type="submit" class="checkout-btn">Anfrage senden</button>
                 </form>
@@ -260,64 +365,143 @@
         </div>
     </footer>
 
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <h2>Vielen Dank!</h2>
+        <p>Ihre Anfrage wurde erfolgreich gesendet.</p>
+        <button id="return-to-shop">Zurück zum Shop</button>
+    </div>
+
     <script>
-        const cartTable = document.getElementById('cart-items');
-        const totalCostElement = document.getElementById('total-cost');
-        const cartContent = document.getElementById('cart-content');
-        const emptyCart = document.getElementById('empty-cart');
+        document.addEventListener("DOMContentLoaded", () => {
+            const cartTable = document.getElementById('cart-items');
+            const totalCostElement = document.getElementById('total-cost');
+            const cartContent = document.getElementById('cart-content');
+            const emptyCart = document.getElementById('empty-cart');
+            const cartContentField = document.getElementById('cartContent');
+            const overlay = document.getElementById('overlay');
+            const popup = document.getElementById('popup');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');            const returnToShopButton = document.getElementById('return-to-shop');
 
-        let totalPrice = 0;
-        const shippingCost = 13.98;
+let totalPrice = 0;
+const shippingCost = 13.98;
 
-        // Lade die vorhandenen Artikel aus dem Local Storage
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+// Lade die vorhandenen Artikel aus dem Local Storage
+let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Funktion zum Datumsformat TT.MM.JJJJ konvertieren
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('de-DE');
-        }
+// Funktion zum Datumsformat TT.MM.JJJJ konvertieren
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('de-DE');
+}
 
-        // Funktion zum Warenkorb rendern
-        function renderCart() {
-            cartTable.innerHTML = ''; // Tabelle leeren
-            totalPrice = 0;
+// Funktion zur Berechnung der Tage zwischen zwei Daten
+function calculateDays(startDate, endDate) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const diffTime = Math.abs(end - start);
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1; // +1 für inklusives Zählen
+}
 
-            if (cartItems.length === 0) {
-                cartContent.style.display = 'none';
-                emptyCart.style.display = 'block';
-                return;
+// Funktion zum Warenkorb rendern
+function renderCart() {
+    cartTable.innerHTML = ''; // Tabelle leeren
+    totalPrice = 0;
+
+    if (cartItems.length === 0) {
+        cartContent.style.display = 'none';
+        emptyCart.style.display = 'block';
+        return;
+    }
+
+    cartContent.style.display = 'block';
+    emptyCart.style.display = 'none';
+
+    cartItems.forEach((item, index) => {
+        const days = calculateDays(item.startDate, item.endDate);
+        const totalItemPrice = days * parseFloat(item.price);
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${formatDate(item.startDate)} - ${formatDate(item.endDate)}</td>
+            <td>${days}</td>
+            <td>${totalItemPrice.toFixed(2)} €</td>
+            <td><button class="remove-btn" data-index="${index}">Entfernen</button></td>
+        `;
+        cartTable.appendChild(row);
+        totalPrice += totalItemPrice;
+    });
+
+    totalPrice += shippingCost;
+    totalCostElement.textContent = `Gesamtkosten: ${totalPrice.toFixed(2)} € (inkl. Versand)`;
+    // Warenkorbinhalt formatieren und in das versteckte Feld schreiben
+    let cartContentText = 'Warenkorbinhalt:\n';
+    cartItems.forEach(item => {
+        const days = calculateDays(item.startDate, item.endDate);
+        const totalItemPrice = days * parseFloat(item.price);
+        cartContentText += `${item.name} (${formatDate(item.startDate)} - ${formatDate(item.endDate)}, ${days} Tage): ${totalItemPrice.toFixed(2)} €\n`;
+    });
+    cartContentText += `\nGesamtkosten: ${totalPrice.toFixed(2)} € (inkl. Versand)`;
+    cartContentField.value = cartContentText;
+}
+
+// Funktion zum Entfernen eines Artikels
+cartTable.addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-btn')) {
+        const index = event.target.dataset.index;
+        cartItems.splice(index, 1); // Artikel aus Array entfernen
+        localStorage.setItem('cart', JSON.stringify(cartItems)); // Local Storage aktualisieren
+        renderCart(); // Warenkorb neu rendern
+    }
+});
+
+// Formular per AJAX senden
+const form = document.getElementById("cart-form");
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch("https://formspree.io/f/mgvvndqo", {
+        method: "POST",
+        body: formData,
+        headers: {
+            Accept: "application/json",
+        },
+    })
+        .then((response) => {
+            if (response.ok) {
+                overlay.style.display = "block";
+                popup.style.display = "block";
+                form.reset();
+
+                // Warenkorb leeren
+                cartItems = [];
+                localStorage.setItem('cart', JSON.stringify(cartItems));
+                renderCart();
+            } else {
+                throw new Error("Form submission failed");
             }
-
-            cartItems.forEach((item, index) => {
-                const period = `${formatDate(item.startDate)} - ${formatDate(item.endDate)}`;
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${item.name}</td>
-                    <td>${period}</td>
-                    <td>${item.price} €</td>
-                    <td><button class="remove-btn" data-index="${index}">Entfernen</button></td>
-                `;
-                cartTable.appendChild(row);
-                totalPrice += parseFloat(item.price);
-            });
-
-            totalPrice += shippingCost;
-            totalCostElement.textContent = `Gesamtkosten: ${totalPrice.toFixed(2)} € (inkl. Versand)`;
-        }
-
-        // Funktion zum Entfernen eines Artikels
-        cartTable.addEventListener('click', (event) => {
-            if (event.target.classList.contains('remove-btn')) {
-                const index = event.target.dataset.index;
-                cartItems.splice(index, 1); // Artikel aus Array entfernen
-                localStorage.setItem('cart', JSON.stringify(cartItems)); // Local Storage aktualisieren
-                renderCart(); // Warenkorb neu rendern
-            }
+        })
+        .catch(() => {
+            alert("Es gab ein Problem beim Senden der Anfrage. Bitte versuchen Sie es erneut.");
         });
+});
 
-        // Warenkorb beim Laden der Seite rendern
-        renderCart();
-    </script>
+// Burger Menü Funktion
+hamburgerMenu.addEventListener('click', () => {
+    nav.classList.toggle('show');
+});
+
+// Zurück zum Shop
+returnToShopButton.addEventListener("click", () => {
+    window.location.href = "shop.html";
+});
+
+// Warenkorb beim Laden der Seite rendern
+renderCart();
+});
+</script>
 </body>
 </html>
