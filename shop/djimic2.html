@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="icon" href="../assets/style/favicon.png" type="image/png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt - Maurizio Vogel | DISCOVERI</title>
+    <title>DJI Mic 2 mieten | DISCOVERI</title>
     <style>
         @font-face {
             font-family: 'Montserrat-Alt1';
@@ -22,14 +22,11 @@
             line-height: 1.6;
             background: white;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
         }
 
         .hero {
             height: 150px;
-            background: url('assets/style/backround.png') no-repeat center center/cover;
+            background: url('../assets/style/backround.png') no-repeat center center/cover;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -66,6 +63,7 @@
         nav {
             display: flex;
             gap: 20px;
+            align-items: center;
         }
 
         nav a {
@@ -79,49 +77,42 @@
             color: #e48eab;
         }
 
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 70px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            gap: 15px;
-        }
-
-        .nav-links a {
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             color: white;
-            font-size: 1em;
-            padding: 10px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+            cursor: pointer;
         }
 
-        .nav-links a:last-child {
-            border-bottom: none;
+        .cart-icon {
+            width: 24px;
+            height: 24px;
         }
 
         .content {
-            flex: 1;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
             background-color: white;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin: 20px auto;
         }
 
         h1 {
             font-size: 2.2em;
             color: #333;
-            text-align: center;
         }
 
         p {
@@ -130,21 +121,29 @@
         }
 
         form {
+            margin-top: 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         label {
             font-size: 1em;
+            font-weight: bold;
+            text-align: left;
         }
 
-        input, textarea, button {
-            width: 100%;
+        input, button {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 1em;
+            width: 100%;
+        }
+
+        input[type="date"] {
+            max-width: 250px;
+            margin: 0 auto;
         }
 
         button {
@@ -160,12 +159,11 @@
         }
 
         .footer {
-            background: url('assets/style/backround.png') no-repeat center bottom/cover;
+            background: url('../assets/style/backround.png') no-repeat center bottom/cover;
             height: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 0;
         }
 
         .footer-links {
@@ -185,21 +183,6 @@
             color: #e48eab;
         }
 
-        .success-message {
-            display: none;
-            color: #28a745;
-            font-weight: bold;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
@@ -209,8 +192,8 @@
                 display: none;
             }
 
-            .logo {
-                height: 30px; /* Reduzierte Größe für mobile Ansicht */
+            .cart {
+                margin-left: auto;
             }
         }
     </style>
@@ -218,91 +201,70 @@
 <body>
     <div class="hero">
         <a href="/">
-            <img src="assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+            <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
         </a>
         <div class="hamburger-menu">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <nav class="nav-links">
+        <nav>
             <a href="about.html">ÜBER</a>
             <a href="contact.html">KONTAKT</a>
-            <a href="shop.html">SHOP</a>
             <a href="login.html">LOGIN</a>
-        </nav>
-        <nav class="desktop-nav">
-            <a href="about.html">ÜBER</a>
-            <a href="contact.html">KONTAKT</a>
-            <a href="shop.html">SHOP</a>
-            <a href="login.html">LOGIN</a>
+            <div class="cart" onclick="window.location.href='../cart.html'">
+                <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+                <span>Warenkorb</span>
+            </div>
         </nav>
     </div>
 
     <div class="content">
-        <h1>KONTAKT</h1>
-        <form id="contact-form">
-            <label>
-                Name:
-                <input type="text" name="name" required>
-            </label>
-            <label>
-                Mail:
-                <input type="email" name="email" required>
-            </label>
-            <label>
-                Telefon (optional):
-                <input type="tel" name="phone">
-            </label>
-            <label>
-                Nachricht:
-                <textarea name="message" rows="5" required></textarea>
-            </label>
-            <button type="submit">Senden</button>
+        <h1>DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)</h1>
+        <img src="../assets/productphotos/djimic2.jpg" alt="DJI Mic 2" class="product-image">
+        <p>250 m Reichweite | 8GB interner Speicher pro Sender für bis zu 14h Stunden interne 32-Bit-Float-Aufnahme</p>
+        <p><strong>24 € / Tag</strong></p>
+        <p>Profiklang im Taschenformat. Bist du bereit, deine Aufnahmen auf ein ganz neues Level zu heben? Dann schnall dich an, denn das DJI MIC 2 ist da, um deine Audiowelt zu revolutionieren! Dieses kleine Wunderwerk der Technik ist nicht einfach nur ein Mikrofon – es ist dein persönlicher Audioassistent, der dafür sorgt, dass du immer kristallklar zu hören bist, egal ob beim Vloggen, Interviewen oder Livestreamen. </p>
+
+        <form id="add-to-cart-form">
+            <label for="start-date">Erster Miettag:</label>
+            <input type="date" id="start-date" name="start_date" required>
+
+            <label for="end-date">Letzter Miettag:</label>
+            <input type="date" id="end-date" name="end_date" required>
+
+            <button type="submit">Zum Warenkorb hinzufügen</button>
         </form>
-        <div class="success-message">Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.</div>
     </div>
 
     <footer class="footer">
         <div class="footer-links">
             <a href="/">STARTSEITE</a>
             <a href="impressum.html">IMPRESSUM</a>
-            <a href="agb.html">AGB</a>
             <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="agb.html">AGB</a>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contact-form');
-            const successMessage = document.querySelector('.success-message');
+            const form = document.getElementById('add-to-cart-form');
 
-            form.addEventListener('submit', async (event) => {
+            form.addEventListener('submit', (event) => {
                 event.preventDefault();
 
-                const formData = new FormData(form);
+                const product = {
+                    name: 'DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)',
+                    price: 24,
+                    startDate: document.getElementById('start-date').value,
+                    endDate: document.getElementById('end-date').value
+                };
 
-                try {
-                    const response = await fetch('https://formspree.io/f/xlddnyrw', {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-                    if (response.ok) {
-                        form.reset();
-                        successMessage.style.display = 'block';
-                        setTimeout(() => {
-                            successMessage.style.display = 'none';
-                        }, 3000);
-                    } else {
-                        alert('Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.');
-                    }
-                } catch (error) {
-                    alert('Es gab ein Problem beim Senden Ihrer Nachricht. Bitte versuchen Sie es später erneut.');
-                }
+                alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });
     </script>
