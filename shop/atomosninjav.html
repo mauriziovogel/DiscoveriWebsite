@@ -193,6 +193,10 @@
       .desktop-nav {
         display: none;
       }
+      /* Logo in der mobilen Version anpassen (30px Höhe wie auf der Shop-Seite) */
+      .logo {
+        height: 30px;
+      }
     }
   </style>
 </head>
@@ -275,7 +279,7 @@
         event.preventDefault();
 
         const product = {
-          name: 'SonyATOMOS Ninja V Video Monitor & Recorder Set',
+          name: 'ATOMOS Ninja V Video Monitor & Recorder Set',
           price: 39,
           startDate: document.getElementById('start-date').value,
           endDate: document.getElementById('end-date').value
