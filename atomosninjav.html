@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <link rel="icon" href="../assets/style/favicon.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATOMOS Ninja V mieten | DISCOVERI</title>
+  <style>
+    @font-face {
+      font-family: 'Montserrat-Alt1';
+      src: url('fonts/Montserrat-Alt1-Regular.woff2') format('woff2'),
+           url('fonts/Montserrat-Alt1-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'Montserrat-Alt1', sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: white;
+      color: #333;
+    }
+
+    /* Header / Hero-Bereich */
+    .hero {
+      height: 150px;
+      background: url('../assets/style/backround.png') no-repeat center center/cover;
+      padding: 0 50px;
+      position: relative;
+    }
+    .hero-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 40px;
+      position: relative;
+      z-index: 10;
+    }
+    .logo {
+      height: 40px;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.1);
+    }
+    .hamburger-menu {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      width: 30px;
+      height: 20px;
+    }
+    .hamburger-menu .bar {
+      background-color: white;
+      height: 3px;
+      width: 100%;
+      margin: 3px 0;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    /* Desktop-Navigation */
+    .desktop-nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .desktop-nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .desktop-nav a:hover {
+      color: #e48eab;
+    }
+    /* Warenkorb-Button */
+    .cart {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .cart-icon {
+      width: 24px;
+      height: 24px;
+    }
+    /* Mobile-Navigation, die per Hamburger-Menü ein- und ausgeblendet wird */
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 50px;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 10px;
+      padding: 15px;
+      gap: 15px;
+      z-index: 9999;
+    }
+    .nav-links a {
+      color: white;
+      font-size: 1em;
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .nav-links a:last-child {
+      border-bottom: none;
+    }
+
+    /* Inhalt */
+    .content {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .product-image {
+      width: 100%;
+      max-width: 300px;
+      max-height: 300px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin: 20px auto;
+    }
+    h1 {
+      font-size: 2.2em;
+      color: #333;
+    }
+    p {
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    label {
+      font-size: 1em;
+      font-weight: bold;
+      text-align: left;
+    }
+    input, button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      width: 100%;
+    }
+    input[type="date"] {
+      max-width: 250px;
+      margin: 0 auto;
+    }
+    button {
+      background-color: #e48eab;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #d36a92;
+    }
+
+    /* Footer */
+    .footer {
+      background: url('../assets/style/backround.png') no-repeat center bottom/cover;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .footer-links a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover {
+      color: #e48eab;
+    }
+
+    /* Media Query für mobile Geräte */
+    @media (max-width: 768px) {
+      .hamburger-menu {
+        display: flex;
+      }
+      /* Desktop-Navigation ausblenden, stattdessen die mobile Navigation verwenden */
+      .desktop-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-header">
+      <a href="/">
+        <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+      </a>
+      <div class="hamburger-menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+      <!-- Desktop-Navigation -->
+      <nav class="desktop-nav">
+        <a href="about.html">ÜBER</a>
+        <a href="contact.html">KONTAKT</a>
+        <a href="login.html">LOGIN</a>
+        <div class="cart" onclick="window.location.href='../cart.html'">
+          <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+          <span>Warenkorb</span>
+        </div>
+      </nav>
+      <!-- Mobile-Navigation (wird per Hamburger-Menü ein-/ausgeblendet) -->
+      <nav class="nav-links">
+        <a href="about.html">ÜBER</a>
+        <a href="contact.html">KONTAKT</a>
+        <a href="login.html">LOGIN</a>
+        <div class="cart" onclick="window.location.href='../cart.html'">
+          <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+          <span>Warenkorb</span>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>ATOMOS Ninja V Video Monitor & Recorder Set</h1>
+    <img src="../assets/productphotos/atomosninjav.jpg" alt="ATOMOS Ninja V" class="product-image">
+    <p>Kompakter 5″ Monitor-Rekorder mit 1000 nits Helligkeit zum externen Aufnehmen auf SSD´s</p>
+    <p><strong>39 € / Tag</strong></p>
+    <p>4 x Akku, 2 x 500GB SSD, Cage, HDMI auf HDMI Kabel, HDMI auf Micro HDMI Kabel, Coldshoemount & ARRI Pin Mount in einem Hartschalenkoffer als Set.</p>
+
+    <form id="add-to-cart-form">
+      <label for="start-date">Erster Miettag:</label>
+      <input type="date" id="start-date" name="start_date" required>
+
+      <label for="end-date">Letzter Miettag:</label>
+      <input type="date" id="end-date" name="end_date" required>
+
+      <button type="submit">Zum Warenkorb hinzufügen</button>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">STARTSEITE</a>
+      <a href="impressum.html">IMPRESSUM</a>
+      <a href="datenschutz.html">DATENSCHUTZ</a>
+      <a href="agb.html">AGB</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      const navLinks = document.querySelector('.nav-links');
+
+      hamburgerMenu.addEventListener('click', () => {
+        const isVisible = navLinks.style.display === 'flex';
+        navLinks.style.display = isVisible ? 'none' : 'flex';
+      });
+
+      navLinks.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+          navLinks.style.display = 'none';
+        }
+      });
+
+      const form = document.getElementById('add-to-cart-form');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const product = {
+          name: 'SonyATOMOS Ninja V Video Monitor & Recorder Set',
+          price: 39,
+          startDate: document.getElementById('start-date').value,
+          endDate: document.getElementById('end-date').value
+        };
+
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.push(product);
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        alert('Produkt wurde zum Warenkorb hinzugefügt!');
+      });
+    });
+  </script>
+</body>
+</html>
