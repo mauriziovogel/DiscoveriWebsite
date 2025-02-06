@@ -1,291 +1,272 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <link rel="icon" href="../assets/style/favicon.png" type="image/png">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJI Mic 2 mieten | DISCOVERI</title>
-  <style>
-    @font-face {
-      font-family: 'Montserrat-Alt1';
-      src: url('fonts/Montserrat-Alt1-Regular.woff2') format('woff2'),
-           url('fonts/Montserrat-Alt1-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
+    <link rel="icon" href="../assets/style/favicon.png" type="image/png">
 
-    body {
-      font-family: 'Montserrat-Alt1', sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.6;
-      background: white;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJI Mic 2 mieten | DISCOVERI</title>
+    <style>
+        @font-face {
+            font-family: 'Montserrat-Alt1';
+            src: url('fonts/Montserrat-Alt1-Regular.woff2') format('woff2'),
+                 url('fonts/Montserrat-Alt1-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 
-    .hero {
-      height: 150px;
-      background: url('../assets/style/backround.png') no-repeat center center/cover;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 50px;
-      position: relative;
-    }
+        body {
+            font-family: 'Montserrat-Alt1', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: white;
+            color: #333;
+        }
 
-    .logo {
-      height: 40px;
-      transition: transform 0.3s ease;
-    }
+        .hero {
+            height: 150px;
+            background: url('../assets/style/backround.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 50px;
+            position: relative;
+        }
 
-    .logo:hover {
-      transform: scale(1.1);
-    }
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
 
-    .hamburger-menu {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      width: 30px;
-      height: 20px;
-    }
+        .logo:hover {
+            transform: scale(1.1);
+        }
 
-    .hamburger-menu .bar {
-      background-color: white;
-      height: 3px;
-      width: 100%;
-      margin: 3px 0;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
+        .hamburger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+        }
 
-    nav {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
+        .hamburger-menu .bar {
+            background-color: white;
+            height: 3px;
+            width: 100%;
+            margin: 3px 0;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
 
-    nav a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
 
-    nav a:hover {
-      color: #e48eab;
-    }
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-    .cart {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        nav a:hover {
+            color: #e48eab;
+        }
 
-    .cart-icon {
-      width: 24px;
-      height: 24px;
-    }
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    .content {
-      max-width: 800px;
-      margin: 20px auto;
-      background-color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
+        .cart-icon {
+            width: 24px;
+            height: 24px;
+        }
 
-    .product-image {
-      width: 100%;
-      max-width: 300px;
-      max-height: 300px;
-      object-fit: contain;
-      border-radius: 10px;
-      margin: 20px auto;
-    }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-    h1 {
-      font-size: 2.2em;
-      color: #333;
-    }
+        .product-image {
+            width: 100%;
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
 
-    p {
-      margin-bottom: 15px;
-      font-size: 1.1em;
-    }
+        h1 {
+            font-size: 2.2em;
+            color: #333;
+        }
 
-    form {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
 
-    label {
-      font-size: 1em;
-      font-weight: bold;
-      text-align: left;
-    }
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-    input, button {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 1em;
-      width: 100%;
-    }
+        label {
+            font-size: 1em;
+            font-weight: bold;
+            text-align: left;
+        }
 
-    input[type="date"] {
-      max-width: 250px;
-      margin: 0 auto;
-    }
+        input, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            width: 100%;
+        }
 
-    button {
-      background-color: #e48eab;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        input[type="date"] {
+            max-width: 250px;
+            margin: 0 auto;
+        }
 
-    button:hover {
-      background-color: #d36a92;
-    }
+        button {
+            background-color: #e48eab;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .footer {
-      background: url('../assets/style/backround.png') no-repeat center bottom/cover;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        button:hover {
+            background-color: #d36a92;
+        }
 
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-    }
+        .footer {
+            background: url('../assets/style/backround.png') no-repeat center bottom/cover;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    .footer-links a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
 
-    .footer-links a:hover {
-      color: #e48eab;
-    }
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
 
-    @media (max-width: 768px) {
-      .hamburger-menu {
-        display: flex;
-      }
-      nav {
-        display: none;
-      }
-      .cart {
-        margin-left: auto;
-      }
-      /* In mobiler Ansicht soll das Logo 30px hoch sein */
-      .logo {
-        height: 30px;
-      }
-    }
-  </style>
+        .footer-links a:hover {
+            color: #e48eab;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger-menu {
+                display: flex;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .cart {
+                margin-left: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="hero">
-    <a href="/">
-      <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
-    </a>
-    <div class="hamburger-menu">
-      <div class="bar"></div>
-      <div class="bar"></div>
-      <div class="bar"></div>
+    <div class="hero">
+        <a href="/">
+            <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+        </a>
+        <div class="hamburger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <nav>
+            <a href="about.html">ÜBER</a>
+            <a href="contact.html">KONTAKT</a>
+            <a href="login.html">LOGIN</a>
+            <div class="cart" onclick="window.location.href='../cart.html'">
+                <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+                <span>Warenkorb</span>
+            </div>
+        </nav>
     </div>
-    <nav>
-      <a href="about.html">ÜBER</a>
-      <a href="contact.html">KONTAKT</a>
-      <a href="login.html">LOGIN</a>
-      <div class="cart" onclick="window.location.href='../cart.html'">
-        <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
-        <span>Warenkorb</span>
-      </div>
-    </nav>
-  </div>
 
-  <div class="content">
-    <h1>DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)</h1>
-    <img src="../assets/productphotos/djimic2.jpg" alt="DJI Mic 2" class="product-image">
-    <p>250 m Reichweite | 8GB interner Speicher pro Sender für bis zu 14h Stunden interne 32-Bit-Float-Aufnahme</p>
-    <p><strong>24 € / Tag</strong></p>
-    <p>
-      Profiklang im Taschenformat. Bist du bereit, deine Aufnahmen auf ein ganz neues Level zu heben? Dann schnall dich an, denn das DJI MIC 2 ist da, um deine Audiowelt zu revolutionieren! Dieses kleine Wunderwerk der Technik ist nicht einfach nur ein Mikrofon – es ist dein persönlicher Audioassistent, der dafür sorgt, dass du immer kristallklar zu hören bist, egal ob beim Vloggen, Interviewen oder Livestreamen.
-    </p>
+    <div class="content">
+        <h1>DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)</h1>
+        <img src="../assets/productphotos/djimic2.jpg" alt="DJI Mic 2" class="product-image">
+        <p>250 m Reichweite | 8GB interner Speicher pro Sender für bis zu 14h Stunden interne 32-Bit-Float-Aufnahme</p>
+        <p><strong>24 € / Tag</strong></p>
+        <p>Profiklang im Taschenformat. Bist du bereit, deine Aufnahmen auf ein ganz neues Level zu heben? Dann schnall dich an, denn das DJI MIC 2 ist da, um deine Audiowelt zu revolutionieren! Dieses kleine Wunderwerk der Technik ist nicht einfach nur ein Mikrofon – es ist dein persönlicher Audioassistent, der dafür sorgt, dass du immer kristallklar zu hören bist, egal ob beim Vloggen, Interviewen oder Livestreamen. </p>
 
-    <form id="add-to-cart-form">
-      <label for="start-date">Erster Miettag:</label>
-      <input type="date" id="start-date" name="start_date" required>
+        <form id="add-to-cart-form">
+            <label for="start-date">Erster Miettag:</label>
+            <input type="date" id="start-date" name="start_date" required>
 
-      <label for="end-date">Letzter Miettag:</label>
-      <input type="date" id="end-date" name="end_date" required>
+            <label for="end-date">Letzter Miettag:</label>
+            <input type="date" id="end-date" name="end_date" required>
 
-      <button type="submit">Zum Warenkorb hinzufügen</button>
-    </form>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-links">
-      <a href="/">STARTSEITE</a>
-      <a href="impressum.html">IMPRESSUM</a>
-      <a href="datenschutz.html">DATENSCHUTZ</a>
-      <a href="agb.html">AGB</a>
+            <button type="submit">Zum Warenkorb hinzufügen</button>
+        </form>
     </div>
-  </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Burger-Menü Toggle
-      const hamburgerMenu = document.querySelector('.hamburger-menu');
-      const nav = document.querySelector('nav');
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">STARTSEITE</a>
+            <a href="impressum.html">IMPRESSUM</a>
+            <a href="datenschutz.html">DATENSCHUTZ</a>
+            <a href="agb.html">AGB</a>
+        </div>
+    </footer>
 
-      hamburgerMenu.addEventListener('click', () => {
-        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-      });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('add-to-cart-form');
 
-      // Schließt die Navigation, wenn ein Link angeklickt wird (mobile Ansicht)
-      nav.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-          nav.style.display = 'none';
-        }
-      });
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
 
-      // Add-to-cart Formular
-      const form = document.getElementById('add-to-cart-form');
+                const product = {
+                    name: 'DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)',
+                    price: 24,
+                    startDate: document.getElementById('start-date').value,
+                    endDate: document.getElementById('end-date').value
+                };
 
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
 
-        const product = {
-          name: 'DJI Mic 2 (2 Sender + 1 Empfänger + Ladeschale)',
-          price: 24,
-          startDate: document.getElementById('start-date').value,
-          endDate: document.getElementById('end-date').value
-        };
-
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(product);
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        alert('Produkt wurde zum Warenkorb hinzugefügt!');
-      });
-    });
-  </script>
+                alert('Produkt wurde zum Warenkorb hinzugefügt!');
+            });
+        });
+    </script>
 </body>
 </html>

@@ -195,11 +195,6 @@
             .cart {
                 margin-left: auto;
             }
-
-            /* In mobiler Ansicht soll das Logo 30px hoch sein */
-            .logo {
-                height: 30px;
-            }
         }
     </style>
 </head>
@@ -229,7 +224,7 @@
         <img src="../assets/productphotos/proaimbreezaslider.jpg" alt="Proaim Breeza Slider Dolly 200cm" class="product-image">
         <p>Slider-System mit Global Truss F31 200cm & Avenger Stative</p>
         <p><strong>69 € / Tag</strong></p>
-        <p>Slider nur per Abholung verfügbar. Am besten per <a href="contact.html">Kontaktseite</a> anfragen, da im Warenkorb automatisch Versandkosten hinzugefügt werden.</p>
+        <p>Slider nur per Abholung verfügbar. Am besten per  <a href="contact.html">Kontaktseite</a></p> anfragen, da im Warenkorb automatisch Versandkosten hinzugefügt werden.
 
         <form id="add-to-cart-form">
             <label for="start-date">Erster Miettag:</label>
@@ -253,38 +248,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Burger-Menü Toggle für mobile Ansicht
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const nav = document.querySelector('nav');
-            
-            hamburgerMenu.addEventListener('click', () => {
-                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
-            });
-            
-            // Schließt die Navigation, wenn ein Link angeklickt wird (mobile Ansicht)
-            nav.addEventListener('click', (event) => {
-                if (event.target.tagName === 'A') {
-                    nav.style.display = 'none';
-                }
-            });
-            
-            // Add-to-cart Formular
             const form = document.getElementById('add-to-cart-form');
-            
+
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                
+
                 const product = {
-                    name: 'Proaim Breeza Slider Dolly 200cm',
-                    price: 69,
+                    name: 'Sony FE 200–600 mm, F5,6–6,3 G OSS ',
+                    price: 32,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
-                
+
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
-                
+
                 alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });
