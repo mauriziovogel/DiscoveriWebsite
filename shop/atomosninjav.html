@@ -13,7 +13,6 @@
       font-weight: normal;
       font-style: normal;
     }
-
     body {
       font-family: 'Montserrat-Alt1', sans-serif;
       margin: 0;
@@ -22,22 +21,15 @@
       background: white;
       color: #333;
     }
-
-    /* Header / Hero-Bereich */
+    /* Header / Hero-Bereich – gleiche Struktur wie bei der allgemeinen Shop-Seite */
     .hero {
       height: 150px;
       background: url('../assets/style/backround.png') no-repeat center center/cover;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       padding: 0 50px;
       position: relative;
-    }
-    .hero-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding-top: 40px;
-      position: relative;
-      z-index: 10;
     }
     .logo {
       height: 40px;
@@ -112,7 +104,6 @@
     .nav-links a:last-child {
       border-bottom: none;
     }
-
     /* Inhalt */
     .content {
       max-width: 800px;
@@ -171,7 +162,6 @@
     button:hover {
       background-color: #d36a92;
     }
-
     /* Footer */
     .footer {
       background: url('../assets/style/backround.png') no-repeat center bottom/cover;
@@ -194,13 +184,12 @@
     .footer-links a:hover {
       color: #e48eab;
     }
-
     /* Media Query für mobile Geräte */
     @media (max-width: 768px) {
       .hamburger-menu {
         display: flex;
       }
-      /* Desktop-Navigation ausblenden, stattdessen die mobile Navigation verwenden */
+      /* Desktop-Navigation ausblenden, stattdessen mobile Navigation verwenden */
       .desktop-nav {
         display: none;
       }
@@ -209,36 +198,32 @@
 </head>
 <body>
   <div class="hero">
-    <div class="hero-header">
-      <a href="/">
-        <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
-      </a>
-      <div class="hamburger-menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-      <!-- Desktop-Navigation -->
-      <nav class="desktop-nav">
-        <a href="about.html">ÜBER</a>
-        <a href="contact.html">KONTAKT</a>
-        <a href="login.html">LOGIN</a>
-        <div class="cart" onclick="window.location.href='../cart.html'">
-          <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
-          <span>Warenkorb</span>
-        </div>
-      </nav>
-      <!-- Mobile-Navigation (wird per Hamburger-Menü ein-/ausgeblendet) -->
-      <nav class="nav-links">
-        <a href="about.html">ÜBER</a>
-        <a href="contact.html">KONTAKT</a>
-        <a href="login.html">LOGIN</a>
-        <div class="cart" onclick="window.location.href='../cart.html'">
-          <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
-          <span>Warenkorb</span>
-        </div>
-      </nav>
+    <a href="/">
+      <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
+    </a>
+    <div class="hamburger-menu">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
     </div>
+    <nav class="nav-links">
+      <a href="about.html">ÜBER</a>
+      <a href="contact.html">KONTAKT</a>
+      <a href="login.html">LOGIN</a>
+      <div class="cart" onclick="window.location.href='../cart.html'">
+        <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+        <span>Warenkorb</span>
+      </div>
+    </nav>
+    <nav class="desktop-nav">
+      <a href="about.html">ÜBER</a>
+      <a href="contact.html">KONTAKT</a>
+      <a href="login.html">LOGIN</a>
+      <div class="cart" onclick="window.location.href='../cart.html'">
+        <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
+        <span>Warenkorb</span>
+      </div>
+    </nav>
   </div>
 
   <div class="content">
