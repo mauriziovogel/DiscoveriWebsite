@@ -195,6 +195,11 @@
             .cart {
                 margin-left: auto;
             }
+
+            /* Logo in mobiler Ansicht auf 30px Höhe setzen */
+            .logo {
+                height: 30px;
+            }
         }
     </style>
 </head>
@@ -224,11 +229,12 @@
         <img src="../assets/productphotos/djirs4combo.jpg" alt="DJI RS 4 Combo" class="product-image">
         <p>3 kg Nutzlastkapazität | vertikale Halterung | 2 x Akkugriff</p>
         <p><strong>32 € / Tag</strong></p>
-        <p>Der DJI RS 4 ist ein leichter, effizienter Gimbal mit verbesserter Stabilisierung, optimierter Bedienung und vielseitigem Zubehör. Highlights:
-
-            Native vertikale Aufnahmen (2. Generation): Schneller Wechsel zwischen horizontalen und vertikalen Aufnahmen ohne zusätzliches Zubehör.
-            Automatische Achsensperren (2. Generation): Schnellere Einsatzbereitschaft und minimierte Gimbal-Erschütterungen.
-            Ideal für professionelle und effiziente Kameraführung. </p>
+        <p>
+            Der DJI RS 4 ist ein leichter, effizienter Gimbal mit verbesserter Stabilisierung, optimierter Bedienung und vielseitigem Zubehör. Highlights:<br>
+            - Native vertikale Aufnahmen (2. Generation): Schneller Wechsel zwischen horizontalen und vertikalen Aufnahmen ohne zusätzliches Zubehör.<br>
+            - Automatische Achsensperren (2. Generation): Schnellere Einsatzbereitschaft und minimierte Gimbal-Erschütterungen.<br>
+            - Ideal für professionelle und effiziente Kameraführung.
+        </p>
 
         <form id="add-to-cart-form">
             <label for="start-date">Erster Miettag:</label>
@@ -252,22 +258,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Burger-Menü Toggle
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');
+            
+            hamburgerMenu.addEventListener('click', () => {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            // Schließt die Navigation, wenn ein Link angeklickt wird (mobile Ansicht)
+            nav.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    nav.style.display = 'none';
+                }
+            });
+            
+            // Add-to-cart Formular
             const form = document.getElementById('add-to-cart-form');
-
+            
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-
+                
                 const product = {
                     name: 'DJI RS 4 Combo',
                     price: 32,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
-
+                
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
-
+                
                 alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });

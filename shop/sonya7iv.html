@@ -187,13 +187,15 @@
             .hamburger-menu {
                 display: flex;
             }
-
             nav {
                 display: none;
             }
-
             .cart {
                 margin-left: auto;
+            }
+            /* In mobiler Ansicht soll das Logo 30px hoch sein */
+            .logo {
+                height: 30px;
             }
         }
     </style>
@@ -229,10 +231,8 @@
         <form id="add-to-cart-form">
             <label for="start-date">Erster Miettag:</label>
             <input type="date" id="start-date" name="start_date" required>
-
             <label for="end-date">Letzter Miettag:</label>
             <input type="date" id="end-date" name="end_date" required>
-
             <button type="submit">Zum Warenkorb hinzufügen</button>
         </form>
     </div>
@@ -248,22 +248,31 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Burger-Menü Toggle für mobile Ansicht
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');
+            hamburgerMenu.addEventListener('click', () => {
+                nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            });
+            // Schließt die Navigation, wenn ein Link angeklickt wird (mobile Ansicht)
+            nav.addEventListener('click', (event) => {
+                if (event.target.tagName === 'A') {
+                    nav.style.display = 'none';
+                }
+            });
+            // Add-to-cart Formular
             const form = document.getElementById('add-to-cart-form');
-
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-
                 const product = {
                     name: 'Sony Alpha A7 IV',
                     price: 37,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
-
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
-
                 alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });
