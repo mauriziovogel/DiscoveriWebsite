@@ -200,7 +200,7 @@
 <body>
     <!-- Angepasster Header -->
     <div class="hero">
-        <a href="/">
+        <a href="../">
             <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
         </a>
         <div class="hamburger-menu">
@@ -209,9 +209,9 @@
             <div class="bar"></div>
         </div>
         <nav>
-            <a href="about.html">ÜBER</a>
-            <a href="contact.html">KONTAKT</a>
-            <a href="login.html">LOGIN</a>
+            <a href="../about.html">ÜBER</a>
+            <a href="../contact.html">KONTAKT</a>
+            <a href="../login.html">LOGIN</a>
             <div class="cart" onclick="window.location.href='../cart.html'">
                 <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
                 <span>Warenkorb</span>
@@ -241,23 +241,21 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="/">STARTSEITE</a>
-            <a href="impressum.html">IMPRESSUM</a>
-            <a href="datenschutz.html">DATENSCHUTZ</a>
-            <a href="agb.html">AGB</a>
+            <a href="../">STARTSEITE</a>
+            <a href="../impressum.html">IMPRESSUM</a>
+            <a href="../datenschutz.html">DATENSCHUTZ</a>
+            <a href="../agb.html">AGB</a>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Hamburger-Menü Funktionalität: Beim Klick wird die Navigation ein- bzw. ausgeblendet.
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const nav = document.querySelector('nav');
             hamburgerMenu.addEventListener('click', () => {
                 nav.classList.toggle('active');
             });
 
-            // Warenkorb-Funktionalität
             const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
