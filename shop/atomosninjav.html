@@ -100,6 +100,7 @@
       padding: 10px;
       text-align: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      text-decoration: none;
     }
     .nav-links a:last-child {
       border-bottom: none;
@@ -193,6 +194,10 @@
       .desktop-nav {
         display: none;
       }
+      /* Mobile Navigation einblenden, wenn aktiv */
+      .nav-links.active {
+        display: flex;
+      }
       /* Logo in der mobilen Version anpassen (30px Höhe wie auf der Shop-Seite) */
       .logo {
         height: 30px;
@@ -202,7 +207,7 @@
 </head>
 <body>
   <div class="hero">
-    <a href="/">
+    <a href="../">
       <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
     </a>
     <div class="hamburger-menu">
@@ -210,19 +215,21 @@
       <div class="bar"></div>
       <div class="bar"></div>
     </div>
+    <!-- Mobile Navigation -->
     <nav class="nav-links">
-      <a href="about.html">ÜBER</a>
-      <a href="contact.html">KONTAKT</a>
-      <a href="login.html">LOGIN</a>
+      <a href="../about.html">ÜBER</a>
+      <a href="../contact.html">KONTAKT</a>
+      <a href="../login.html">LOGIN</a>
       <div class="cart" onclick="window.location.href='../cart.html'">
         <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
         <span>Warenkorb</span>
       </div>
     </nav>
+    <!-- Desktop Navigation -->
     <nav class="desktop-nav">
-      <a href="about.html">ÜBER</a>
-      <a href="contact.html">KONTAKT</a>
-      <a href="login.html">LOGIN</a>
+      <a href="../about.html">ÜBER</a>
+      <a href="../contact.html">KONTAKT</a>
+      <a href="../login.html">LOGIN</a>
       <div class="cart" onclick="window.location.href='../cart.html'">
         <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
         <span>Warenkorb</span>
@@ -250,10 +257,10 @@
 
   <footer class="footer">
     <div class="footer-links">
-      <a href="/">STARTSEITE</a>
-      <a href="impressum.html">IMPRESSUM</a>
-      <a href="datenschutz.html">DATENSCHUTZ</a>
-      <a href="agb.html">AGB</a>
+      <a href="../">STARTSEITE</a>
+      <a href="../impressum.html">IMPRESSUM</a>
+      <a href="../datenschutz.html">DATENSCHUTZ</a>
+      <a href="../agb.html">AGB</a>
     </div>
   </footer>
 
@@ -263,18 +270,16 @@
       const navLinks = document.querySelector('.nav-links');
 
       hamburgerMenu.addEventListener('click', () => {
-        const isVisible = navLinks.style.display === 'flex';
-        navLinks.style.display = isVisible ? 'none' : 'flex';
+        navLinks.classList.toggle('active');
       });
 
       navLinks.addEventListener('click', (event) => {
         if (event.target.tagName === 'A') {
-          navLinks.style.display = 'none';
+          navLinks.classList.remove('active');
         }
       });
 
       const form = document.getElementById('add-to-cart-form');
-
       form.addEventListener('submit', (event) => {
         event.preventDefault();
 

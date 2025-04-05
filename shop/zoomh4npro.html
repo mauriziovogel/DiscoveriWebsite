@@ -168,6 +168,18 @@
             }
             nav {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 50px;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 10px;
+                padding: 15px;
+                gap: 15px;
+                z-index: 9999;
+            }
+            nav.active {
+                display: flex;
             }
             .cart {
                 margin-left: auto;
@@ -178,7 +190,7 @@
 <body>
     <!-- Angepasster Header -->
     <div class="hero">
-        <a href="/">
+        <a href="../">
             <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
         </a>
         <div class="hamburger-menu">
@@ -187,22 +199,23 @@
             <div class="bar"></div>
         </div>
         <nav>
-            <a href="about.html">ÜBER</a>
-            <a href="contact.html">KONTAKT</a>
-            <a href="login.html">LOGIN</a>
+            <a href="../about.html">ÜBER</a>
+            <a href="../contact.html">KONTAKT</a>
+            <a href="../login.html">LOGIN</a>
             <div class="cart" onclick="window.location.href='../cart.html'">
                 <img src="../assets/style/cart.png" alt="Warenkorb" class="cart-icon">
                 <span>Warenkorb</span>
             </div>
         </nav>
     </div>
+
     <!-- Produktinhalt -->
     <div class="content">
-        <h1>ZOOM H4N Pro Audio Recorder</h1>
-        <img src="../assets/productphotos/zoomh4npro.jpg" alt="ZOOM H4N Pro Audio Recorder" class="product-image">
-        <p>Externes X/Y Stereo Mikrofon mit XLR/TRS-Combo-Steckern</p>
-        <p><strong>16 € / Tag</strong></p>
-        <p>Der H4n bietet ein optimiertes X/Y-Stereomikrofon, wunderbar natürlich klingende Vorverstärker sowie ein äußerst geringes Grundrauschen. Damit ist es der ultimative tragbare 4-Spur-Recorder für Musiker & Creator.</p>
+        <h1>Sony FE 35 mm F1.4 GM</h1>
+        <img src="../assets/productphotos/sonyfe35mm.jpg" alt="Sony FE 35 mm F1.4 GM" class="product-image">
+        <p>Kleines, lichtstarkes 35-mm-Objektiv für faszinierende Bilder und Videos</p>
+        <p><strong>35 € / Tag</strong></p>
+        <p>Kompaktes 35 mm F1.4 G Master mit Festbrennweite. Optimiertes G Master Bokeh und hohe Flexibilität. Schneller, präziser und leiser AF durch XD-Linearmotor.</p>
         <form id="add-to-cart-form">
             <label for="start-date">Erster Miettag:</label>
             <input type="date" id="start-date" name="start_date" required>
@@ -211,23 +224,25 @@
             <button type="submit">Zum Warenkorb hinzufügen</button>
         </form>
     </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="/">STARTSEITE</a>
-            <a href="impressum.html">IMPRESSUM</a>
-            <a href="datenschutz.html">DATENSCHUTZ</a>
-            <a href="agb.html">AGB</a>
+            <a href="../">STARTSEITE</a>
+            <a href="../impressum.html">IMPRESSUM</a>
+            <a href="../datenschutz.html">DATENSCHUTZ</a>
+            <a href="../agb.html">AGB</a>
         </div>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const product = {
-                    name: 'ZOOM H4N Pro Audio Recorder',
-                    price: 16,
+                    name: 'Sony FE 35 mm F1.4 GM',
+                    price: 35,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
