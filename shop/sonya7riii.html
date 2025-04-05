@@ -2,7 +2,6 @@
 <html lang="de">
 <head>
     <link rel="icon" href="../assets/style/favicon.png" type="image/png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sony Alpha A7R III mieten | DISCOVERI</title>
@@ -195,12 +194,42 @@
                 display: flex;
             }
 
+            .logo {
+                height: 30px; /* Logo-Größe ggf. reduziert */
+            }
+
+            /* Dropdown-Navigation im Stil der Index-Seite */
             nav {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 10px;
+                padding: 15px;
+                gap: 15px;
+                z-index: 10;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                color: white;
+                font-size: 1em;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+
+            nav a:last-child {
+                border-bottom: none;
             }
 
             .cart {
-                margin-left: auto;
+                display: none;
             }
         }
     </style>
@@ -258,22 +287,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('add-to-cart-form');
+            // Hamburger-Menü Funktionalität: Beim Klick wird die Navigation ein- bzw. ausgeblendet.
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');
+            hamburgerMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
 
+            // Warenkorb-Funktionalität
+            const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-
                 const product = {
                     name: 'Sony Alpha A7R III',
                     price: 33,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
-
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
-
                 alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });
