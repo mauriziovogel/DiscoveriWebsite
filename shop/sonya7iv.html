@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
     <link rel="icon" href="../assets/style/favicon.png" type="image/png">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sony Alpha A7 IV mieten | DISCOVERI</title>
@@ -192,30 +193,14 @@
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
-                /* Keine absolute Positionierung – es bleibt in der Flexbox an der rechten Stelle */
-                position: relative;
-                z-index: 2;
-            }
-
-            .hero a {
-                /* In der mobilen Ansicht wird die Breite des Logos begrenzt, damit es nicht in den Bereich des Hamburger-Menüs hineinragt */
-                max-width: 70%;
             }
 
             nav {
                 display: none;
-                flex-direction: column;
-                gap: 10px;
-                background-color: #333;
-                position: absolute;
-                top: 150px;
-                left: 0;
-                width: 100%;
-                padding: 20px;
             }
 
-            nav.active {
-                display: flex;
+            .cart {
+                margin-left: auto;
             }
         }
     </style>
@@ -273,15 +258,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Hamburger-Menü Funktionalität
-            const hamburgerMenu = document.querySelector('.hamburger-menu');
-            const nav = document.querySelector('nav');
-            hamburgerMenu.addEventListener('click', () => {
-                nav.classList.toggle('active');
-            });
-
-            // Warenkorb-Funktionalität
             const form = document.getElementById('add-to-cart-form');
+
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
 

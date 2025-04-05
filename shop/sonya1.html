@@ -159,20 +159,24 @@
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
+                /* Damit das Burger-Menü immer oben liegt */
+                position: relative;
+                z-index: 10;
             }
             nav {
                 display: none;
+            }
+            /* Sichtbar, wenn über die JS-Klasse 'active' getoggelt */
+            nav.active {
+                display: flex;
                 flex-direction: column;
                 gap: 10px;
-                background-color: #333;
+                background: #333;
                 position: absolute;
                 top: 150px;
                 left: 0;
                 width: 100%;
                 padding: 20px;
-            }
-            nav.active {
-                display: flex;
             }
             .cart {
                 margin-left: auto;
@@ -224,14 +228,13 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Hamburger-Menü Funktionalität
+            // Burger-Menü Funktionalität: Beim Klick wird die Navigation ein- bzw. ausgeblendet.
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const nav = document.querySelector('nav');
             hamburgerMenu.addEventListener('click', () => {
                 nav.classList.toggle('active');
             });
-            
-            // Warenkorb-Funktionalität
+            // Warenkorb-Funktionalität (wie zuvor)
             const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
