@@ -195,7 +195,7 @@
             }
 
             .logo {
-                height: 30px; /* Logo-Größe ggf. reduziert */
+                height: 30px; /* ggf. Größe reduziert */
             }
 
             /* Dropdown-Navigation im Stil der Index-Seite */
@@ -227,9 +227,15 @@
             nav a:last-child {
                 border-bottom: none;
             }
-
-            .cart {
-                display: none;
+            
+            /* Für den Warenkorb-Link innerhalb der Navigation */
+            nav .cart {
+                padding: 10px;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            
+            nav .cart:last-child {
+                border-bottom: none;
             }
         }
     </style>
