@@ -2,7 +2,6 @@
 <html lang="de">
 <head>
     <link rel="icon" href="../assets/style/favicon.png" type="image/png">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sony Alpha A7 IV mieten | DISCOVERI</title>
@@ -14,7 +13,6 @@
             font-weight: normal;
             font-style: normal;
         }
-
         body {
             font-family: 'Montserrat-Alt1', sans-serif;
             margin: 0;
@@ -23,7 +21,6 @@
             background: white;
             color: #333;
         }
-
         /* Header / Hero */
         .hero {
             height: 150px;
@@ -34,20 +31,16 @@
             padding: 0 50px;
             position: relative;
         }
-
         .hero a {
             text-decoration: none;
         }
-
         .logo {
             height: 30px;
             transition: transform 0.3s ease;
         }
-
         .logo:hover {
             transform: scale(1.1);
         }
-
         .hamburger-menu {
             display: none;
             flex-direction: column;
@@ -55,7 +48,6 @@
             width: 30px;
             height: 20px;
         }
-
         .hamburger-menu .bar {
             background-color: white;
             height: 3px;
@@ -64,24 +56,20 @@
             border-radius: 5px;
             transition: all 0.3s ease;
         }
-
         nav {
             display: flex;
             gap: 20px;
             align-items: center;
         }
-
         nav a {
             text-decoration: none;
             color: white;
             font-weight: bold;
             transition: color 0.3s;
         }
-
         nav a:hover {
             color: #e48eab;
         }
-
         .cart {
             display: flex;
             align-items: center;
@@ -90,12 +78,10 @@
             font-weight: bold;
             cursor: pointer;
         }
-
         .cart-icon {
             width: 24px;
             height: 24px;
         }
-
         /* Inhalt */
         .content {
             max-width: 800px;
@@ -106,7 +92,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-
         .product-image {
             width: 100%;
             max-width: 300px;
@@ -115,30 +100,25 @@
             border-radius: 10px;
             margin: 20px auto;
         }
-
         h1 {
             font-size: 2.2em;
             color: #333;
         }
-
         p {
             margin-bottom: 15px;
             font-size: 1.1em;
         }
-
         form {
             margin-top: 20px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-
         label {
             font-size: 1em;
             font-weight: bold;
             text-align: left;
         }
-
         input, button {
             padding: 10px;
             border: 1px solid #ccc;
@@ -146,12 +126,10 @@
             font-size: 1em;
             width: 100%;
         }
-
         input[type="date"] {
             max-width: 250px;
             margin: 0 auto;
         }
-
         button {
             background-color: #e48eab;
             color: white;
@@ -159,11 +137,9 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
-
         button:hover {
             background-color: #d36a92;
         }
-
         /* Footer */
         .footer {
             background: url('../assets/style/backround.png') no-repeat center bottom/cover;
@@ -172,35 +148,51 @@
             justify-content: center;
             align-items: center;
         }
-
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 20px;
         }
-
         .footer-links a {
             text-decoration: none;
             color: white;
             font-weight: bold;
             transition: color 0.3s;
         }
-
         .footer-links a:hover {
             color: #e48eab;
         }
-
         @media (max-width: 768px) {
             .hamburger-menu {
                 display: flex;
+                /* Sicherstellen, dass das Burger-Menü oben liegt */
+                position: relative;
+                z-index: 20;
             }
-
             nav {
                 display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.9);
+                border-radius: 10px;
+                padding: 15px;
+                gap: 15px;
+                z-index: 10;
             }
-
-            .cart {
-                margin-left: auto;
+            nav.active {
+                display: flex;
+            }
+            nav a {
+                color: white;
+                font-size: 1em;
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.2);
+            }
+            nav a:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -258,22 +250,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('add-to-cart-form');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
+            const nav = document.querySelector('nav');
+            hamburgerMenu.addEventListener('click', () => {
+                nav.classList.toggle('active');
+            });
 
+            // Warenkorb-Funktionalität
+            const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-
                 const product = {
                     name: 'Sony Alpha A7 IV',
                     price: 37,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
-
                 let cart = JSON.parse(localStorage.getItem('cart')) || [];
                 cart.push(product);
                 localStorage.setItem('cart', JSON.stringify(cart));
-
                 alert('Produkt wurde zum Warenkorb hinzugefügt!');
             });
         });
