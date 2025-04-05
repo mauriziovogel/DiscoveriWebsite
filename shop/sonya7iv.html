@@ -200,7 +200,7 @@
 <body>
     <!-- Angepasster Header -->
     <div class="hero">
-        <a href="/">
+        <a href="../">
             <img src="../assets/style/logo-white.png" alt="Discoveri Logo" class="logo">
         </a>
         <div class="hamburger-menu">
@@ -221,11 +221,11 @@
 
     <!-- Produktinhalt -->
     <div class="content">
-        <h1>Sony Alpha A7 IV</h1>
-        <img src="../assets/productphotos/sonya7iv.jpg" alt="Sony Alpha A7 IV" class="product-image">
-        <p>33 MP | 4K 60p Video | Vollformat | Allrounder mit Schwenkdisplay</p>
-        <p><strong>37 € / Tag</strong></p>
-        <p>Mit ihren leistungsstarken Foto- und Videoaufnahmen ist die α7 IV die perfekte Hybridlösung für atemberaubende Bilder, großartige Ergebnisse und schnelles Teilen. Die α7 IV ist eine Kamera, die die Visionen der Fotografen zum Leben erweckt.</p>
+        <h1>Sony Alpha A1</h1>
+        <img src="../assets/productphotos/sonya1.jpg" alt="Sony Alpha A1" class="product-image">
+        <p>50 MP | 8K Video | Vollformat | High-Speed-Aufnahmen</p>
+        <p><strong>94 € / Tag</strong></p>
+        <p>Die Sony Alpha A1 bietet beeindruckende Leistung und Vielseitigkeit mit 50 Megapixeln, 8K-Videoaufnahmen und erstklassiger Geschwindigkeit. Perfekt für professionelle Fotografen und Filmemacher.</p>
 
         <form id="add-to-cart-form">
             <label for="start-date">Erster Miettag:</label>
@@ -241,10 +241,10 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-links">
-            <a href="/">STARTSEITE</a>
-            <a href="impressum.html">IMPRESSUM</a>
-            <a href="datenschutz.html">DATENSCHUTZ</a>
-            <a href="agb.html">AGB</a>
+            <a href="../">STARTSEITE</a>
+            <a href="../impressum.html">IMPRESSUM</a>
+            <a href="../datenschutz.html">DATENSCHUTZ</a>
+            <a href="../agb.html">AGB</a>
         </div>
     </footer>
 
@@ -256,13 +256,12 @@
                 nav.classList.toggle('active');
             });
 
-            // Warenkorb-Funktionalität
             const form = document.getElementById('add-to-cart-form');
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
                 const product = {
-                    name: 'Sony Alpha A7 IV',
-                    price: 37,
+                    name: 'Sony Alpha A1',
+                    price: 94,
                     startDate: document.getElementById('start-date').value,
                     endDate: document.getElementById('end-date').value
                 };
